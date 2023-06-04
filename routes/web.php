@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Auth
+Route::get('login', fn() => view('auth.login'))->name('login');
+Route::get('register', fn() => view('auth.register'))->name('register');
+
+// Dashboard
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/', fn() => view('dashboard.index'))->name('index');
+});

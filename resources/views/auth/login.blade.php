@@ -14,6 +14,17 @@
                 </div>
 
                 <div class="card-body">
+                    @if (session()->has('failed'))
+                        <div class="alert alert-danger alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                                {{ session('failed') }}
+                            </div>
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ url('login') }}" class="needs-validation" novalidate="">
                         @csrf
                         <div class="form-group">
@@ -47,7 +58,7 @@
                 </div>
             </div>
             <div class="mt-5 text-muted text-center">
-                Don't have an account? <a href="auth-register.html">Create One</a>
+                Don't have an account? <a href="{{ route('registerPage') }}">Create One</a>
             </div>
             <div class="simple-footer">
                 Copyright &copy; Stisla 2018

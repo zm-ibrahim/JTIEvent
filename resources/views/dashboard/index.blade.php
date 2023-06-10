@@ -9,6 +9,7 @@
         </div>
 
         <div class="section-body">
+            My role is {{ auth()->user()->role }}
         </div>
     </section>
 @endsection

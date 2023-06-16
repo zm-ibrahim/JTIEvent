@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" autofocus>
+                                name="name" value="{{ old('name') }}" autofocus>
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email">
+                                name="email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}

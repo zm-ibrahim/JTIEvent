@@ -21,7 +21,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    function login(Request $request): RedirectResponse
+    public function login(Request $request): RedirectResponse
     {
         $validatedData = $this->validate($request, [
             'email' => 'required|email',
@@ -37,7 +37,7 @@ class AuthController extends Controller
         return redirect()->back()->with('failed', 'Wrong email or password!');
     }
 
-    function logout(Request $request): RedirectResponse
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
         $request->session()->invalidate();
@@ -46,7 +46,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    function register(Request $request): RedirectResponse
+    public function register(Request $request): RedirectResponse
     {
         $credentials = $this->validate($request, [
             'name' => 'required|unique:users|max:255|min:3',

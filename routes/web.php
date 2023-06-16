@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +23,16 @@ Route::middleware('guest')->group(function () {
     // Auth
     Route::get('login', [AuthController::class, 'displayLoginPage'])->name('loginPage');
     Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('register', [AuthController::class, 'displayRegisterPage'])->name('registerPage');
     Route::post('register', [AuthController::class, 'register'])->name('register');
 });
 
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dashboard
-Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
-    Route::get('/', fn () => view('dashboard.index'))->name('index');
-});
+Route::controller(DashboardController::class)->prefix('dashboard')->name('dashboard.')
+    ->middleware('auth')->group(function () {
+        Route::get('/', 'dashboard')->name('index');
+        Route::get('profile', 'profile')->name('profile');
+        Route::post('profile', 'updateProfile')->name('profile.update');
+    });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -48,15 +50,35 @@ class AuthController extends Controller
 
     public function register(Request $request): RedirectResponse
     {
-        $credentials = $this->validate($request, [
-            'name' => 'required|unique:users|max:255|min:3',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|max:255|min:8|confirmed'
+        $participantData = $this->validate($request, [
+            'full_name' => 'required|max:255|min:3',
+            'phone_number' => 'required|numeric|digits_between:10,13',
+            'birth_date' => 'required|date',
+            'school_name' => 'required|max:255|min:3',
         ]);
 
-        $credentials['password'] = Hash::make($credentials['password']); //pakai hash
+        $credentials = $this->validate($request, [
+            'photo' => 'image|file|max:5200',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|max:255|min:8|confirmed',
+        ]);
+        $credentials['password'] = Hash::make($credentials['password']);
         $credentials['role'] = User::role['participant'];
-        User::create($credentials);
+        if (isset($credentials['photo'])) {
+            $credentials['photo'] = $request->photo->store('photo-profile');
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::create($credentials);
+            $user->participant()->create($participantData);
+
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollback();
+            return $exception;
+        }
 
         return redirect()->route('login')->with('success', 'Registration successful!');
     }

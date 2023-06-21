@@ -17,6 +17,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    @yield('style')
 </head>
 
 <body>
@@ -61,6 +62,7 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <!-- Page Specific JS File -->
+    @stack('script')
 </body>
 
 </html>

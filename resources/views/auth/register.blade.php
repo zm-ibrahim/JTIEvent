@@ -14,13 +14,25 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group">
+                            <label for="photo">Photo</label>
+                            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo"
+                                name="photo" onchange="imagePreview()">
+                            <img class="image-preview img-fluid mt-3 col-sm-5">
+                            @error('photo')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ old('name') }}" autofocus>
-                            @error('name')
+                                name="full_name" value="{{ old('full_name') }}" autofocus>
+                            @error('full_name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -32,6 +44,42 @@
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}">
                             @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number">Phone</label>
+                            <input id="phone_number" type="tel"
+                                class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
+                                value="{{ old('phone_number') }}">
+                            @error('phone_number')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birth_date">Birth Date</label>
+                            <input id="birth_date" type="date"
+                                class="form-control @error('birth_date') is-invalid @enderror" name="birth_date"
+                                value="{{ old('birth_date') }}">
+                            @error('birth_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="school_name">School Name</label>
+                            <input id="school_name" type="text"
+                                class="form-control @error('school_name') is-invalid @enderror" name="school_name"
+                                value="{{ old('school_name') }}">
+                            @error('school_name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -51,7 +99,8 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="password_confirmation" class="d-block">Password Confirmation</label>
-                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+                                <input id="password_confirmation" type="password" class="form-control"
+                                    name="password_confirmation">
                             </div>
                         </div>
 
@@ -72,8 +121,12 @@
 
 @section('script')
     <script>
-        $('#tes-form').submit(() => {
-            console.log('first')
-        })
+        function imagePreview() {
+            const image = document.querySelector('#photo');
+            const imgPreview = document.querySelector('.image-preview');
+
+            const blob = URL.createObjectURL(image.files[0]);
+            imgPreview.src = blob;
+        }
     </script>
 @endsection

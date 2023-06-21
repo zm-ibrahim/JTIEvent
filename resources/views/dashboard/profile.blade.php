@@ -12,14 +12,14 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Hi, {{ auth()->user()->name }}!</h2>
+            <h2 class="section-title">Hi, {{ $name }}!</h2>
             <p class="section-lead">
                 Change information about yourself on this page.
             </p>
 
             <div class="card">
                 <form method="post" action="{{ route('dashboard.profile.update') }}" class="needs-validation"
-                    novalidate="">
+                    novalidate="" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h4>Edit Profile</h4>
@@ -45,10 +45,16 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" type="text" class="form-control"
-                                value="{{ $user->name }}" required="">
-                            @error('name')
+                            <label for="photo">Photo</label>
+                            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo"
+                                name="photo" onchange="imagePreview()">
+                            @if ($user->photo)
+                                <img src="{{ asset('storage/' . $user->photo) }}"
+                                    class="image-preview img-fluid mt-3 col-sm-5">
+                            @else
+                                <img class="image-preview img-fluid mt-3 col-sm-5">
+                            @endif
+                            @error('photo')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -66,7 +72,8 @@
                         </div>
                         <div class="form-group">
                             <label for="old_password">Old Password</label>
-                            <input id="old_password" name="old_password" type="password" class="form-control" required="">
+                            <input id="old_password" name="old_password" type="password" class="form-control"
+                                required="">
                             @error('old_password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -99,3 +106,15 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        function imagePreview() {
+            const image = document.querySelector('#photo');
+            const imgPreview = document.querySelector('.image-preview');
+
+            const blob = URL.createObjectURL(image.files[0]);
+            imgPreview.src = blob;
+        }
+    </script>
+@endpush

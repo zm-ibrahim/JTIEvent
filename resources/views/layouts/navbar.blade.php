@@ -13,7 +13,7 @@
     <li class="dropdown"><a href="#" data-toggle="dropdown"
             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, {{ $name }}</div>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ session('name') }}</div>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             <a href="{{ route('dashboard.profile') }}" class="dropdown-item has-icon">

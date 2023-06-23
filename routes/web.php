@@ -35,4 +35,10 @@ Route::controller(DashboardController::class)->prefix('dashboard')->name('dashbo
         Route::get('/', 'dashboard')->name('index');
         Route::get('profile', 'profile')->name('profile');
         Route::post('profile', 'updateProfile')->name('profile.update');
+
+        Route::get('personal-data/participant', 'participantPersonalData')->name('personal-data.participant');
+        Route::post('personal-data/participant/update', 'updateParticipantPersonalData')->name('personal-data.participant.update');
+
+        Route::get('personal-data/judge', 'judgePersonalData')->name('personal-data.judge');
+        Route::post('personal-data/judge/update', 'updateJudgePersonalData')->name('personal-data.judge.update');
     });

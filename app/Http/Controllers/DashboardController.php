@@ -13,32 +13,25 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
+    public function getData()
+    {
+        $user = Auth::user();
+        if ($user->role == User::role['participant']) {
+            return $user->participant;
+        } else {
+            return $user->judge;
+        }
+    }
+
     public function dashboard(): View
     {
-        switch (Auth::user()->role) {
-            case User::role['participant']:
-                $name = Auth::user()->participant->full_name;
-                break;
-            case User::role['judge']:
-                $name = Auth::user()->participant->full_name;
-                break;
-            case User::role['admin']:
-                $name = 'admin';
-                break;
-        }
-        return view('dashboard.index', compact('name'));
+        return view('dashboard.index');
     }
 
     public function profile(): View
     {
         $user = Auth::user();
-        $name = 'Admin';
-        if ($user->role == User::role['participant']) {
-            $name = $user->participant->full_name;
-        } elseif ($user->role == User::role['judge']) {
-            $name = $user->judge->full_name;
-        }
-        return view('dashboard.profile', compact('user', 'name'));
+        return view('dashboard.profile', compact('user'));
     }
 
     public function updateProfile(Request $request)
@@ -93,5 +86,17 @@ class DashboardController extends Controller
         }
 
         return redirect()->route('dashboard.profile')->with('success', 'Profile updated!');
+    }
+
+    public function participantPersonalData(): View
+    {
+        $data = Auth::user()->participant;
+        return view('dashboard.participant-personal-data', compact('data'));
+    }
+
+    public function judgePersonalData(): View
+    {
+        $data = Auth::user()->judge;
+        return view('dashboard.judge-personal-data', compact('data'));
     }
 }

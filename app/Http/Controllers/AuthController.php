@@ -33,6 +33,19 @@ class AuthController extends Controller
         if (Auth::attempt($validatedData)) {
             $request->session()->regenerate();
 
+            switch (Auth::user()->role) {
+                case User::role['participant']:
+                    $name = Auth::user()->participant->full_name;
+                    break;
+                case User::role['judge']:
+                    $name = Auth::user()->judge->full_name;
+                    break;
+                case User::role['admin']:
+                    $name = 'admin';
+                    break;
+            }
+            $request->session()->put('name', $name);
+
             return redirect()->intended('dashboard');
         }
 

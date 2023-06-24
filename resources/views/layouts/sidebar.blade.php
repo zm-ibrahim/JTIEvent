@@ -33,8 +33,8 @@
             </li>
         @endcannot
         @can('admin')
-            <li class="nav-link">
-                <a href="{{ route('dashboard.personal-data.' . (Auth::user()->role == 'JUDGE' ? 'judge' : 'participant')) }}">
+            <li class="nav-link {{ Request::is('dashboard/add-judge') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.add-judge') }}">
                     <i class="fas fa-file-alt"></i>
                     <span>Tambah Juri</span>
                 </a>

@@ -99,4 +99,39 @@ class DashboardController extends Controller
         $data = Auth::user()->judge;
         return view('dashboard.judge-personal-data', compact('data'));
     }
+
+    public function addJudge()
+    {
+        return view('dashboard.add-judge');
+    }
+
+    public function saveJudge(Request $request)
+    {
+        $judgeData = $this->validate($request, [
+            'full_name' => 'required|string|max:255|min:3',
+            'phone_number' => 'required|numeric|digits_between:10,13',
+        ]);
+
+        $userData = $this->validate($request, [
+            'photo' => 'image|file|max:5200',
+            'email' => 'required|email|unique:users',
+            'password' => 'max:255|confirmed',
+        ]);
+        $userData['role'] = User::role['judge'];
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::create($userData);
+            $user->judge()->create($judgeData);
+
+            DB::commit();
+        } catch (Exception $e) {
+            return redirect()->route('dashboard.add-judge')
+                ->with('failed', 'Failed to add judge!');
+        }
+
+        return redirect()->route('dashboard.add-judge')
+            ->with('success', 'New judge has been added!');
+    }
 }

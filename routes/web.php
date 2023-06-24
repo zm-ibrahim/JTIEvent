@@ -41,4 +41,7 @@ Route::controller(DashboardController::class)->prefix('dashboard')->name('dashbo
 
         Route::get('personal-data/judge', 'judgePersonalData')->name('personal-data.judge');
         Route::post('personal-data/judge/update', 'updateJudgePersonalData')->name('personal-data.judge.update');
+
+        Route::get('add-judge', 'addJudge')->name('add-judge');
+        Route::post('add-judge', 'saveJudge')->name('add-judge');
     });

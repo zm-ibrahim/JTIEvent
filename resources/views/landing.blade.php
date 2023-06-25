@@ -31,11 +31,19 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">List</a></li>
-                </ul>
+                @if (auth()->check())
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('dashboard.index') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">List</a></li>
+                    </ul>
+                @else
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">List</a></li>
+                    </ul>
+                @endif
             </div>
         </div>
     </nav>
@@ -47,7 +55,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">JTI Event</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Dimana partisipasi kegiatan anda menjadi lebih mudah.
                     </h2>
-                    <a class="btn btn-primary" href="list.php">Lihat</a>
+                    <a class="btn btn-primary" href="#">Lihat</a>
                 </div>
             </div>
         </div>

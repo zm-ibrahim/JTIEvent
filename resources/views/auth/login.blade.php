@@ -70,7 +70,7 @@
                 Don't have an account? <a href="{{ route('registerPage') }}">Create One</a>
             </div>
             <div class="simple-footer">
-                Copyright &copy; Stisla 2018
+                Copyright &copy; JTEVENTSKDNAKNK 2023
             </div>
         </div>
     </div>

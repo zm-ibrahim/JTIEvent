@@ -1,9 +1,9 @@
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="index.html">Stisla</a>
+        <a href="#">JTI-EVENT</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="index.html">St</a>
+        <a href="#">JTI-E</a>
     </div>
     <ul class="sidebar-menu">
         <li class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -26,7 +26,8 @@
         </li>
         @cannot('admin')
             <li class="nav-link {{ Request::is('dashboard/personal-data/*') ? 'active' : '' }}">
-                <a href="{{ route('dashboard.personal-data.' . (Auth::user()->role == 'JUDGE' ? 'judge' : 'participant')) }}">
+                <a
+                    href="{{ route('dashboard.personal-data.' . (Auth::user()->role == 'JUDGE' ? 'judge' : 'participant')) }}">
                     <i class="fas fa-file-alt"></i>
                     <span>Data Diri</span>
                 </a>

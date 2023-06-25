@@ -1,0 +1,47 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Nunito', sans-serif;
+}
+
+.admin {
+    background: #212529;
+    color: white;
+    border: solid 0px;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+}
+
+.card-img-top {
+    margin: auto;
+    max-width: 400px;
+}
+
+main {
+    min-height: calc(100vh - 73px - 56px - 56px);
+}
+
+footer hr {
+    width: 500px;
+}
+
+.card_hover {
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.bg_green {
+    background-color: rgb(189, 189, 189);
+}
+
+.card_hover:hover {
+    transform: translate(-2px, -2px);
+}

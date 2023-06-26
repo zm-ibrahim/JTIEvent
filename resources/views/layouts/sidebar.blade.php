@@ -12,8 +12,8 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="nav-link">
-            <a href="#">
+        <li class="nav-link {{ Request::is('dashboard/event*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard.event.index') }}">
                 <i class="fas fa-trophy"></i>
                 <span>Lomba</span>
             </a>

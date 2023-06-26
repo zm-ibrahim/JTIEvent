@@ -25,6 +25,7 @@ class EventFactory extends Factory
             'name' => fake()->word(),
             'start_date' => $startDate,
             'end_date' => $endDate,
+            'description' => fake()->words(10, true)
         ];
     }
 }

@@ -12,7 +12,7 @@ class Event extends Model
     protected $guarded = ['id'];
 
     public function judges(): BelongsToMany {
-        return $this->belongsToMany(Judge::class);
+        return $this->belongsToMany(Judge::class, 'judge_event');
     }
 
     public function participants(): BelongsToMany {

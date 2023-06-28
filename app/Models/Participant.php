@@ -13,11 +13,13 @@ class Participant extends Model
 
     protected $guarded = ['id'];
 
-    public function events(): BelongsToMany {
-        return $this->belongsToMany(Event::class);
+    public function events(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'participant_event');
     }
 
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 }

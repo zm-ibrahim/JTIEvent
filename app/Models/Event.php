@@ -11,11 +11,13 @@ class Event extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function judges(): BelongsToMany {
+    public function judges(): BelongsToMany
+    {
         return $this->belongsToMany(Judge::class, 'judge_event');
     }
 
-    public function participants(): BelongsToMany {
+    public function participants(): BelongsToMany
+    {
         return $this->belongsToMany(Participant::class);
     }
 }

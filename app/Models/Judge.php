@@ -13,15 +13,18 @@ class Judge extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function events(): BelongsToMany {
-        return $this->belongsToMany(Event::class);
+    public function events(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'judge_event');
     }
 
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function scores(): HasMany {
+    public function scores(): HasMany
+    {
         return $this->hasMany(Score::class);
     }
 }

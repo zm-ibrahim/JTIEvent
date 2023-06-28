@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Judge;
+use App\Models\Participant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -132,5 +134,11 @@ class EventController extends Controller
 
         return redirect()->route('dashboard.event.judges', $event->id)
             ->with('success', 'Juri berhasil dihapus!');
+    }
+
+    // events followed by user
+    public function listParticipantEvent() {
+        $events = Auth::user()->participant->events()->paginate(5);
+        return view('dashboard.event.participant-event', compact('events'));
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Judge;
-use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -138,7 +137,14 @@ class EventController extends Controller
 
     // events followed by user
     public function listParticipantEvent() {
-        $events = Auth::user()->participant->events()->paginate(5);
+        $events = Auth::user()->participant->participantEvent()
+        ->with([
+            'event' => fn($query) => $query->select('id', 'name', 'start_date', 'end_date'),
+        ])
+        ->chunkMap(function($data) {
+            $data->score = number_format($data->scores()->avg('score'));
+            return $data;
+        });
         return view('dashboard.event.participant-event', compact('events'));
     }
 }

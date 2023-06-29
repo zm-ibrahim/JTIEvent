@@ -14,14 +14,25 @@
         </li>
         <li class="nav-link">
             <a href="#">
-                <i class="fas fa-trophy"></i>
-                <span>Lomba</span>
-            </a>
-        </li>
-        <li class="nav-link">
-            <a href="#">
                 <i class="far fa-file-alt"></i>
                 <span>Sertifikat</span>
+            </a>
+        </li>
+        <li class="nav-link {{ Request::is('dashboard/event*') ? 'active' : '' }}">
+            <a 
+            @switch(auth()->user()->role)
+                @case('ADMIN')
+                    href="{{ route('dashboard.event.index') }}"
+                    @break
+                @case('JUDGE')
+                    href="{{ route('dashboard.event.judge') }}"
+                    @break
+                @default
+                    href="{{ route('dashboard.event.participant') }}"
+            @endswitch
+            >
+                <i class="fas fa-trophy"></i>
+                <span>Lomba</span>
             </a>
         </li>
         @cannot('admin')

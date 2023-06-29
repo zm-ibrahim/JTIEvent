@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('participant_id');
             $table->integer('event_id');
+            $table->string('certificate')->nullable();
             $table->timestamps();
         });
     }

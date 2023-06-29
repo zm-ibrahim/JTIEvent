@@ -40,8 +40,8 @@
                     <h2 class="section-title">Event Detail</h2>
                     <p class="section-lead">
                         @if (auth()->check())
-                            @if (auth()->user - role != 'ADMIN' && auth()->user - role != 'JUDGE')
-                                <button class="btn btn-primary">Ikuti</button>
+                            @if (auth()->user()->role == 'PARTICIPANT')
+                                <a class="btn btn-primary" href="#">Ikuti</a>
                             @else
                                 Anda harus login sebagai Participant untuk dapat mengikuti kegiatan
                             @endif

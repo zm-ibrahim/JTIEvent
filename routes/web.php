@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', [LandingController::class, 'landing'])->name('landingPage');
+Route::get('/list', [LandingController::class, 'list'])->name('listPage');
 
 Route::middleware('guest')->group(function () {
     // Auth
@@ -45,3 +45,5 @@ Route::controller(DashboardController::class)->prefix('dashboard')->name('dashbo
         Route::get('add-judge', 'addJudge')->name('add-judge');
         Route::post('add-judge', 'saveJudge')->name('add-judge');
     });
+
+// Route::get('list');

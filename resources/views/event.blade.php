@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>JTI Event | List Event</title>
+    <title>JTI Event | Event {{ $event->name }}</title>
     <link rel="icon" type="landing/image/x-icon" href="landing/assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -21,8 +21,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
@@ -30,8 +28,9 @@
     {{-- <link href="{{ asset('landing/css/styles.css') }}" rel="stylesheet" /> --}}
 </head>
 
-<body class="layout-3">
-    <div id="app">
+<div id="app">
+
+    <body class="layout-3">
         <div class="main-wrapper container">
             <nav class="navbar navbar-expand-lg bg-primary">
                 <a class="navbar-brand" href="#">JTI - Event</a>
@@ -57,36 +56,23 @@
             </nav>
             <div class="main-content">
                 <div class="section-body">
-                    <h2 class="section-title">List Event</h2>
-                    <div class="row">
-                        @foreach ($events as $event)
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                                <article class="article article-style-b">
-                                    <div class="article-header">
-                                        <div class="article-image"
-                                            @if ($event->photo) data-background="{{ $event->photo }}"
-                                            @else
-                                            data-background="../assets/img/news/img13.jpg"
-                                            style="background-image: url(&quot;../assets/img/news/img13.jpg&quot;);" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="article-details">
-                                        <div class="article-title">
-                                            <h2><a href="#">{{ $event->name }}</a>
-                                            </h2>
-                                        </div>
-                                        <p>{{ Str::limit($event->description, 60) }}</p>
-                                        <small>Waktu Mulai : {{ $event->start_date }}</small><br>
-                                        <small>Waktu Selesai : {{ $event->end_date }}</small>
-                                        <div class="article-cta">
-                                            <a href="{{ route('ShowEvent', $event->id) }}">Read More <i
-                                                    class="fas fa-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                        @endforeach
+                    <h2 class="section-title">Event Detail</h2>
+                    <p class="section-lead"></p>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{ $event->name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            @if ($event->photo)
+                                <img src="{{ $event->photo }}" alt="Event Photo">
+                            @endif
+                            <p>{{ $event->description }}</p>
+                        </div>
+                        <div class="card-footer bg-whitesmoke">
+                            Waktu Mulai : {{ $event->start_date }} | Waktu Selesai : {{ $event->end_date }}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -112,7 +98,7 @@
         <script src="../assets/js/scripts.js"></script>
         <script src="../assets/js/custom.js"></script>
 
-</body>
+    </body>
 </div>
 
 </html>

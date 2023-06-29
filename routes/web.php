@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingController::class, 'landing'])->name('landingPage');
-Route::get('/list', [LandingController::class, 'list'])->name('listPage');
+Route::resource('list', LandingController::class);
+Route::get('list/{event}', [LandingController::class, 'show'])->name('ShowEvent');
 
 Route::middleware('guest')->group(function () {
     // Auth

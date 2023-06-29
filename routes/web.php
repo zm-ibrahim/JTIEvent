@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingController::class, 'landing'])->name('landingPage');
+Route::get('list', [LandingController::class, 'index'])->name('list');
 Route::resource('list', LandingController::class);
 Route::get('list/{event}', [LandingController::class, 'show'])->name('ShowEvent');
 

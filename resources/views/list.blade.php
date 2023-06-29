@@ -34,26 +34,7 @@
     <div id="app">
         <div class="main-wrapper container">
             <nav class="navbar navbar-expand-lg bg-primary">
-                <a class="navbar-brand" href="#">JTI - Event</a>
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarBav">
-                    @if (auth()->check())
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('dashboard.index') }}">Dashboard</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#">List</a></li>
-                        </ul>
-                    @else
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/list">List</a></li>
-                        </ul>
-                    @endif
-                </div>
+                @include('landing.nav');
             </nav>
             <div class="main-content">
                 <div class="section-body">
@@ -90,27 +71,7 @@
                 </div>
             </div>
         </div>
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50">
-            <div class="container px-4 px-lg-5">Copyright &copy; JTEVENTSKDNAKNK 2023</div>
-        </footer>
-        <!-- General JS Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="../assets/js/stisla.js"></script>
-
-        <!-- JS Libraies -->
-
-        <!-- Template JS File -->
-        <script src="../assets/js/scripts.js"></script>
-        <script src="../assets/js/custom.js"></script>
+        @include('landing.foot');
 
 </body>
 </div>

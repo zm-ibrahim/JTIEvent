@@ -37,15 +37,17 @@
                                         <th>Nama Event</th>
                                         <th>Tanggal Mulai</th>
                                         <th>Tanggal Berakhir</th>
+                                        <th>Skor</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($events as $event)
+                                    @foreach ($events as $e)
                                         <tr>
-                                            <td>{{ $event->name }}</td>
-                                            <td>{{ $event->start_date }}</td>
-                                            <td>{{ $event->end_date }}</td>
+                                            <td>{{ $e->event->name }}</td>
+                                            <td>{{ $e->event->start_date }}</td>
+                                            <td>{{ $e->event->end_date }}</td>
+                                            <td>{{ $e->score }}</td>
                                             <td>
                                                 <a href="#" class="btn btn-primary">Sertifikat</a>
                                             </td>
@@ -55,24 +57,11 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
+                    {{-- <div class="card-footer text-right">
                         {{ $events->links() }}
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
-@push('script')
-    <script>
-        const routeName = "{{ route('dashboard.event.index') }}";
-
-        $('.del-btn').on('click', function(e) {
-            let id = $(this).data("id");
-            $('#delete-form').attr('action', `${routeName}/${id}`);
-            $('#delete-form').submit();
-            e.preventDefault();
-        });
-    </script>
-@endpush

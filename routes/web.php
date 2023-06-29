@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\JudgeController;
+use App\Http\Controllers\ParticipantEventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'landing'])->name('landingPage');
 Route::get('list', [LandingController::class, 'index'])->name('list');
-Route::resource('list', LandingController::class);
 Route::get('list/{event}', [LandingController::class, 'show'])->name('ShowEvent');
 
 Route::middleware('guest')->group(function () {
@@ -32,6 +32,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
 
 // Dashboard
 Route::prefix('dashboard')->name('dashboard.')

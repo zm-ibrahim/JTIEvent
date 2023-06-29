@@ -24,4 +24,9 @@ class LandingController extends Controller
         // dd($event); // Add this line to check the retrieved event object
         return view('event', compact('event'));
     }
+
+    public function join($user, $event)
+    {
+        // Add User and Event to participant_event data
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Judge;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class JudgeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Judge::factory()->count(5)->create();
     }
 }

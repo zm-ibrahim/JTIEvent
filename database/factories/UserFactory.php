@@ -43,4 +43,13 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function judge(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'role' => 'JUDGE',
+            ];
+        });
+    }
 }

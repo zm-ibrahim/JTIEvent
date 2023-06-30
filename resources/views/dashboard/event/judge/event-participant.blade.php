@@ -45,11 +45,19 @@
                                         <tr>
                                             <td>{{ $p->participant->full_name }}</td>
                                             <td>{{ $p->participant->school_name }}</td>
-                                            <td>{{ $p->score ?? 'Belum dinilai' }}</td>
+                                            @if ($p->score)
+                                            <td>{{ $p->score }}</td>
+                                            <td>
+                                                {{-- <a href="#" data-toggle="modal" data-id="{{ $p->id }}"
+                                                    data-target="#giveScoreModal" class="give-score btn btn-primary">Beri Nilai</a> --}}
+                                            </td>
+                                            @else
+                                            <td>Belum dinilai</td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-id="{{ $p->id }}"
                                                     data-target="#giveScoreModal" class="give-score btn btn-primary">Beri Nilai</a>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

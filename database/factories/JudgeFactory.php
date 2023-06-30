@@ -17,8 +17,9 @@ class JudgeFactory extends Factory
      */
     public function definition(): array
     {
+        $judges = User::select('id')->where('role', 'JUDGE')->get();
         return [
-            'user_id' => fake()->unique()->numberBetween(1, User::count()),
+            'user_id' => fake()->unique()->randomElement($judges),
             'full_name' => fake()->name(),
             'phone_number' => fake()->phoneNumber(),
         ];

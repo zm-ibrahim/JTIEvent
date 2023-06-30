@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             EventSeeder::class,
             ParticipantSeeder::class,
-            // JudgeSeeder::class, // jangan dulu
+            JudgeSeeder::class,
             ParticipantEventSeeder::class,
-            // ScoreSeeder::class, // jangan dulu
+            ScoreSeeder::class,
         ]);
     }
 }

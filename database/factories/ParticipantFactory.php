@@ -17,8 +17,9 @@ class ParticipantFactory extends Factory
      */
     public function definition(): array
     {
+        $participants = User::select('id')->where('role', 'PARTICIPANT')->get();
         return [
-            'user_id' => fake()->unique()->numberBetween(1, User::count()),
+            'user_id' => fake()->unique()->randomElement($participants),
             'full_name' => fake()->name(),
             'phone_number' => fake()->phoneNumber(),
             'birth_date' => fake()->date(),

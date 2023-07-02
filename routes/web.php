@@ -57,6 +57,7 @@ Route::prefix('dashboard')->name('dashboard.')
         Route::post('event/{event}/judges/store', [EventController::class, 'saveJudges'])->name('event.judges.store');
         Route::delete('event/{event}/judges/delete', [EventController::class, 'deleteJudge'])->name('event.judges.delete');
         Route::get('event/participant', [EventController::class, 'listParticipantEvent'])->name('event.participant');
+        Route::get('event/participant/{event}/certificate', [EventController::class, 'printCertificate'])->name('event.participant.certificate');
         Route::get('event/judge', [JudgeController::class, 'events'])->name('event.judge');
         Route::get('event/{event}/participant', [JudgeController::class, 'eventParticipants'])->name('event.judge.participant');
         Route::post('event/{participant_event}/give-score', [JudgeController::class, 'giveScore'])->name('event.judge.participant.give-score');

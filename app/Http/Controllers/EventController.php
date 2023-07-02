@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Judge;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -136,15 +137,28 @@ class EventController extends Controller
     }
 
     // events followed by user
-    public function listParticipantEvent() {
+    public function listParticipantEvent()
+    {
         $events = Auth::user()->participant->participantEvent()
-        ->with([
-            'event' => fn($query) => $query->select('id', 'name', 'start_date', 'end_date'),
-        ])
-        ->chunkMap(function($data) {
-            $data->score = number_format($data->scores()->avg('score'));
-            return $data;
-        });
+            ->with([
+                'event' => fn ($query) => $query->select('id', 'name', 'start_date', 'end_date'),
+                'scores' => fn ($query) => $query->select('score'),
+            ])
+            ->chunkMap(function ($data) {
+                $data->score = number_format($data->scores()->avg('score'));
+                return $data;
+            });
         return view('dashboard.event.participant-event', compact('events'));
+    }
+
+    public function printCertificate(Event $event)
+    {
+        $data = Auth::user()->participant;
+        $score = $data->participantEvent()
+            ->where('event_id', $event->id)->first()->scores()->avg('score');
+        $score = number_format($score);
+        $certificate = Pdf::loadView('dashboard.certificate', compact('data', 'event', 'score'))
+            ->setPaper('a4', 'landscape');
+        return $certificate->stream('sertif.pdf');
     }
 }

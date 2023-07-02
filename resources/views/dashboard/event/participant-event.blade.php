@@ -49,7 +49,8 @@
                                             <td>{{ $e->event->end_date }}</td>
                                             <td>{{ $e->score }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary">Sertifikat</a>
+                                                <a href="{{ route('dashboard.event.participant.certificate', $e->event->id) }}"
+                                                    class="btn btn-primary">Sertifikat</a>
                                             </td>
                                         </tr>
                                     @endforeach

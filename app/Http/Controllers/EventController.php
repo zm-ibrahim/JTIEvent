@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Participant;
 use App\Models\Judge;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;

@@ -32,7 +32,7 @@
                     <h1 class="mx-auto my-0 text-uppercase">JTI Event</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Dimana partisipasi kegiatan anda menjadi lebih mudah.
                     </h2>
-                    <a class="btn btn-primary" href="#">Lihat</a>
+                    <a class="btn btn-primary" href="/list">Lihat</a>
                 </div>
             </div>
         </div>

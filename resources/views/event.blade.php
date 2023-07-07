@@ -39,9 +39,36 @@
                 <div class="section-body">
                     <h2 class="section-title">Event Detail</h2>
                     <p class="section-lead">
+                        @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
+
+                        @if (Session::has('alert'))
+                            <div class="alert alert-warning">
+                                {{ Session::get('alert') }}
+                            </div>
+                        @endif
+
                         @if (auth()->check())
                             @if (auth()->user()->role == 'PARTICIPANT')
-                                <a class="btn btn-primary" href="#">Ikuti</a>
+                                @php
+                                    $joined = \App\Models\ParticipantEvent::where('participant_id', auth()->user()->id)
+                                        ->where('event_id', $event->id)
+                                        ->exists();
+                                @endphp
+
+                                @if ($joined)
+                                    Anda sudah terdaftar sebagai Partisipan pada kegiatan ini
+                                @else
+                                    <form action="{{ route('events.join') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        <button type="submit" class="btn btn-primary">Ikuti</button>
+                                    </form>
+                                @endif
                             @else
                                 Anda harus login sebagai Participant untuk dapat mengikuti kegiatan
                             @endif

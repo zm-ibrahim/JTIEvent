@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'landing'])->name('landingPage');
 Route::get('list', [LandingController::class, 'index'])->name('list');
 Route::get('list/{event}', [LandingController::class, 'show'])->name('ShowEvent');
+Route::post('/events/join', [LandingController::class, 'joinEvent'])->name('events.join');
 
 Route::middleware('guest')->group(function () {
     // Auth

@@ -2,5 +2,5 @@
     Copyright &copy; JTEVENTSKDNAKNK 2023 <div class="bullet"></div> Made By <a>Kelompok 4</a>
 </div>
 <div class="footer-right">
-    <a href="https://github.com/zm-ibrahim/PwlBesar">Github</a>
+    <a href="https://github.com/zm-ibrahim/JTIEvent/">Github</a>
 </div>

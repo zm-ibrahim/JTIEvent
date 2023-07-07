@@ -43,7 +43,7 @@ Sertifikat akan dapat dicetak setelah waktu akhir dari kegiatan sudah exceed (te
 
 
 
-# Installasi
+# Instalasi
 
 Berikut ini dibutuhkan agar aplikasi ini dapat dijalankan
 

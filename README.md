@@ -17,6 +17,7 @@ Pemrograman Web Lanjut
 - Cetak sertifikat
 - List Kegiatan
 - Ikuti kegiatan
+- User Dashboard
 
 ### Roles 
 -  Admin
@@ -25,6 +26,9 @@ Dapat melakukan CRUD Event (kegiatan), Judge(Penilai), serta menugaskan juri kep
 Dapat melakukan penilaian terhadap peserta pada kegiatan yang ditugaskan
 - Peserta (Participant)
 Dapat membuat akun, login, mengikuti kegiatan, melihat nilai, dan mencetak sertifikat
+
+### Dashboard
+Dashboard akan menampilkan informasi dan berbagai menu sesuai dengan role masing-masing
 
 ### Sertifikat
 Sertifikat akan dapat dicetak setelah waktu akhir dari kegiatan sudah exceed (terlampaui)

@@ -55,7 +55,7 @@
                         </div>
                         <div class="card-body">
                             @if ($event->photo)
-                                <img src="{{ $event->photo }}" alt="Event Photo">
+                                <img class="img-fluid" src="{{ asset('storage/' . $event->photo) }}" alt="Event Photo">
                             @endif
                             <p>{{ $event->description }}</p>
                         </div>

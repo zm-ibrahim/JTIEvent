@@ -49,8 +49,10 @@
                                             <td>{{ $e->event->end_date }}</td>
                                             <td>{{ $e->score }}</td>
                                             <td>
-                                                <a href="{{ route('dashboard.event.participant.certificate', $e->event->id) }}"
-                                                    class="btn btn-primary">Sertifikat</a>
+                                                @if ($e->score !== 'Belum Dinilai' && $e->event->end_date < now())
+                                                    <a href="{{ route('dashboard.event.participant.certificate', $e->event->id) }}"
+                                                        class="btn btn-primary">Sertifikat</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

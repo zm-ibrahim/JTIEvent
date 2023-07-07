@@ -54,7 +54,7 @@
                         @if (auth()->check())
                             @if (auth()->user()->role == 'PARTICIPANT')
                                 @php
-                                    $joined = \App\Models\ParticipantEvent::where('participant_id', auth()->user()->id)
+                                    $joined = \App\Models\ParticipantEvent::where('participant_id', auth()->user()->participant->id)
                                         ->where('event_id', $event->id)
                                         ->exists();
                                 @endphp
@@ -65,7 +65,8 @@
                                     <form action="{{ route('events.join') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="event_id" value="{{ $event->id }}">
-                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                        <input type="hidden" name="participant_id"
+                                            value="{{ auth()->user()->participant->id }}">
                                         <button type="submit" class="btn btn-primary">Ikuti</button>
                                     </form>
                                 @endif

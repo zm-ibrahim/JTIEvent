@@ -147,6 +147,9 @@ class EventController extends Controller
             ])
             ->chunkMap(function ($data) {
                 $data->score = number_format($data->scores()->avg('score'));
+                if ($data->score == 0) {
+                    $data->score = "Belum dinilai";
+                }
                 return $data;
             });
         return view('dashboard.event.participant-event', compact('events'));

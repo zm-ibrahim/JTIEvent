@@ -32,10 +32,10 @@ class LandingController extends Controller
     public function joinEvent(Request $request)
     {
         $eventId = $request->input('event_id');
-        $userId = $request->input('user_id');
+        $participant_id = $request->input('participant_id');
 
         // Check if the user has already joined the event
-        $alreadyJoined = ParticipantEvent::where('participant_id', $userId)
+        $alreadyJoined = ParticipantEvent::where('participant_id', $participant_id)
             ->where('event_id', $eventId)
             ->exists();
 
@@ -45,7 +45,7 @@ class LandingController extends Controller
         } else {
             // Add the user and event to the participant_event table
             $participantEvent = new ParticipantEvent();
-            $participantEvent->participant_id = $userId;
+            $participantEvent->participant_id = $participant_id;
             $participantEvent->event_id = $eventId;
             $participantEvent->save();
 

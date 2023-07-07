@@ -49,6 +49,16 @@
                                             @else
                                             data-background="{{ asset('assets/img/news/img13.jpg') }}" @endif>
                                         </div>
+                                        {{-- Started --}}
+                                        <div class="article-badge">
+                                            @if ($event->start_date <= now() && $event->end_date >= now())
+                                                <div class="article-badge-item bg-warning"><i
+                                                        class="fas fa-calendar-check"></i> Started</div>
+                                            @elseif ($event->end_date < now())
+                                                <div class="article-badge-item bg-danger"><i
+                                                        class="fas fa-hourglass-end"></i> Ended</div>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="article-details">
                                         <div class="article-title">
@@ -59,9 +69,14 @@
                                         <small>Waktu Mulai : {{ $event->start_date }}</small><br>
                                         <small>Waktu Selesai : {{ $event->end_date }}</small>
                                         <div class="article-cta">
-                                            <a href="{{ route('ShowEvent', $event->id) }}">Read More <i
-                                                    class="fas fa-chevron-right"></i></a>
+                                            @if ($event->end_date < now())
+                                                Read More <i class="fas fa-chevron-right"></i>
+                                            @else
+                                                <a href="{{ route('ShowEvent', $event->id) }}">Read More <i
+                                                        class="fas fa-chevron-right"></i></a>
+                                            @endif
                                         </div>
+
                                     </div>
                                 </article>
                             </div>

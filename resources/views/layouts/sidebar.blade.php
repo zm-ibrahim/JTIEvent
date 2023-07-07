@@ -1,9 +1,14 @@
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="#">JTI-EVENT</a>
+        <a href="/">
+            <img src="{{ asset('assets/img/pwlBesar.png') }}" width="50px" />
+            JTI-EVENT
+        </a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="#">JTI-E</a>
+        <a href="/">
+            <img src="{{ asset('assets/img/pwlBesar.png') }}" width="50px" />
+        </a>
     </div>
     <ul class="sidebar-menu">
         <li class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -13,8 +18,8 @@
             </a>
         </li>
         <li class="nav-link {{ Request::is('dashboard/event*') ? 'active' : '' }}">
-            <a 
-            @switch(auth()->user()->role)
+            <a
+                @switch(auth()->user()->role)
                 @case('ADMIN')
                     href="{{ route('dashboard.event.index') }}"
                     @break
@@ -23,8 +28,7 @@
                     @break
                 @default
                     href="{{ route('dashboard.event.participant') }}"
-            @endswitch
-            >
+            @endswitch>
                 <i class="fas fa-trophy"></i>
                 <span>Lomba</span>
             </a>

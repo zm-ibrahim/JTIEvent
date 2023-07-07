@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>JTI Event | Event {{ $event->name }}</title>
-    <link rel="icon" type="landing/image/x-icon" href="landing/assets/favicon.ico" />
+    <link rel="icon" type="landing/image/x-icon" href="{{ asset('assets/img/pwlBesar.png') }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->

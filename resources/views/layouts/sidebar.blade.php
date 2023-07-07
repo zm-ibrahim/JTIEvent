@@ -12,12 +12,6 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="nav-link">
-            <a href="#">
-                <i class="far fa-file-alt"></i>
-                <span>Sertifikat</span>
-            </a>
-        </li>
         <li class="nav-link {{ Request::is('dashboard/event*') ? 'active' : '' }}">
             <a 
             @switch(auth()->user()->role)

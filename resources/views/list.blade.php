@@ -45,10 +45,9 @@
                                 <article class="article article-style-b">
                                     <div class="article-header">
                                         <div class="article-image"
-                                            @if ($event->photo) data-background="{{ $event->photo }}"
+                                            @if ($event->photo) data-background="{{ asset('storage/' . $event->photo) }}"
                                             @else
-                                            data-background="../assets/img/news/img13.jpg"
-                                            style="background-image: url(&quot;../assets/img/news/img13.jpg&quot;);" @endif>
+                                            data-background="{{ asset('assets/img/news/img13.jpg') }}" @endif>
                                         </div>
                                     </div>
                                     <div class="article-details">

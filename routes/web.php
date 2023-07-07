@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\JudgeController;
-use App\Http\Controllers\ParticipantEventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +63,3 @@ Route::prefix('dashboard')->name('dashboard.')
         Route::post('event/{participant_event}/give-score', [JudgeController::class, 'giveScore'])->name('event.judge.participant.give-score');
         Route::resource('event', EventController::class);
     });
-
-
-// Route::get('list');

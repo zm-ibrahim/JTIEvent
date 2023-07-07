@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Judge;
+use App\Models\ParticipantEvent;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -25,8 +27,25 @@ class DashboardController extends Controller
 
     public function dashboard(): View
     {
-        return view('dashboard.index');
+        $scoreCount = 0;
+        $user = Auth::user();
+        if ($user->role == User::role['participant']) {
+            $eventCount = ParticipantEvent::where('participant_id', $user->participant->id)->count();
+            $averageScores = ParticipantEvent::where('participant_id', $user->participant->id)->get();
+            foreach ($averageScores as $avg) {
+                $scoreCount += $avg->scores()->avg('score');
+            }
+            $scoreCount = number_format($scoreCount);
+        } else if ($user->role == User::role['judge']) {
+            $eventCount = Judge::where('id', $user->judge->id)->first()->events->count();
+        } else {
+            $eventCount = null;
+        }
+
+
+        return view('dashboard.index', ['eventCount' => $eventCount, 'scoreCount' => $scoreCount]);
     }
+
 
     public function profile(): View
     {
@@ -40,21 +59,6 @@ class DashboardController extends Controller
             return redirect()->route('dashboard.profile')
                 ->with('failed', 'Update failed! You input wrong old password!');
         }
-
-        // $validatedData = $this->validate($request, [
-        //     'full_name' => 'required|max:255|min:3',
-        //     'phone_number' => 'required|numeric|digits_between:10,13',
-        // ]);
-        // $profile = Auth::user()->judge;
-        // if (Auth::user()->role == User::role['participant']) {
-        //     $participantData = $this->validate($request, [
-        //         'birth_date' => 'required|date',
-        //         'school_name' => 'required|max:255|min:3',
-        //     ]);
-
-        //     $validatedData += $participantData;
-        //     $profile = Auth::user()->participant;
-        // }
 
         $credentials = $this->validate($request, [
             'photo' => 'image|file|max:5200',

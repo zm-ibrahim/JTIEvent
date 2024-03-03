@@ -89,6 +89,7 @@ Migrate database
 ```bash
   php artisan migrate:fresh --seed
 ```
+migrate dengan "--seed" melakukan generate data pada database. *Cek UserFactory untuk login admin
 
 Jalankan server
 
